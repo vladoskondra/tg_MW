@@ -1,9 +1,6 @@
-import math
-from modules.gps.pathFinder import pathFinder
+from script.modules.gps.pathFinder import pathFinder
 
-
-
-def gps(start,end):
+def station_Names():
     stationNames = ['Белорусская (зеленая)', 'Маяковская', 'Тверская', 'Театральная', 'Новокузнецкая',
                     'Павелецкая (зеленая)', 'Менделеевская', 'Цветной бульвар', 'Чеховская', 'Боровицкая',
                     'Полянка', 'Серпуховская', 'Достоевская', 'Трубная', 'Сретенский бульвар', 'Чкаловская',
@@ -18,6 +15,10 @@ def gps(start,end):
                     'Проспект мира (кольцевая)', 'Комсомольская (кольцевая)', 'Курская (кольцевая)',
                     'Таганская (кольцевая)', 'Павелецкая (кольцевая)', 'Добрынинская', 'Октябрьская (кольцевая)',
                     'Парк культуры (кольцевая)', 'Киевская (кольцевая)', 'Краснопресненская']
+    return stationNames
+
+def gps(start,end):
+    stationNames = station_Names()
     if '-' in start:
         startPoint1 = stationNames.index(start.split('-')[0])
         startPoint2 = stationNames.index(start.split('-')[1])
