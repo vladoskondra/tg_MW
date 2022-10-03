@@ -1,9 +1,7 @@
 import git
 
-def main():
+def checkVersion():
     repo = git.Repo(".git")
     commit = repo.head.commit
-    print(commit)
+    return commit
 
-if __name__== "__main__":
-    main()

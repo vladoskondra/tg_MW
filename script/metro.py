@@ -10,17 +10,16 @@ from bs4 import BeautifulSoup
 import random
 import datetime
 import math
+from script.config import game_cfg
 from script.modules.gps.gpsGo import gps, station_Names
 import re
 from operator import itemgetter, attrgetter
 
 api_id = 4889182
 api_hash = "38ea074a004c2927bddf31c96f9c03e0"
-
+game = game_cfg()[0]
+gameId = game_cfg()[1]
 client = TelegramClient('MW_bot', api_id, api_hash)
-state = 'none'
-game = 'metro_wars_bot'
-gameId = 1745526034
 state = 'none'
 energy = 150
 direction = 1
@@ -333,16 +332,16 @@ async def normal_handler(event):
     if 'Вы будете перенаправлены на официальный сайт нашего проекта' in messag and (fromChat == gameId or fromChat == me.id):
         entities = event.message.entities
         for ent in entities:
-            if isinstance(ent,MessageEntityTextUrl):
+            if isinstance(ent, MessageEntityTextUrl):
                 if "captcha.metro-wars.online/?id=" in ent.url:
-                    sleep(randint(3,6))
+                    sleep(randint(3, 6))
                     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.67 Safari/537.36'}
                     try:
-                        r = requests.get(ent.url,headers=headers)
+                        r = requests.get(ent.url, headers=headers)
                     except:
                         print('Капча пройдена')
-                        sleep(randint(2,5))
-                        await client.send_message(game,'/start')
+                        sleep(randint(2, 5))
+                        await client.send_message(game, '/start')
     if '🚸 Статус: ' in messag and fromChat == gameId:
         if '❤️' in messag.split('\n')[0]:
             imhere = messag.split('\n')[3]
